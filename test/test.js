@@ -7,23 +7,23 @@
 var should = require('should');
 
 var fs = require('fs');
-var path = process.env.HOME || (process.env.HOMEDRIVE + process.env.HOMEPATH);
-var testCredentials = JSON.parse(fs.readFileSync(path + '/.bluesky/test.json','ascii'));
-var table = require('bluesky').storage({account: testCredentials.account, key: testCredentials.key}).table('winston');
+var testCredentials = JSON.parse(fs.readFileSync('./test/credentials.json','utf8'));
+var table = require('azure-storage').createTableService(testCredentials.account, testCredentials.key);
 
 var winston = require('winston');
-var winstonAzure = require('../lib/winston-azure').Azure;
+var winstonAzure = require('../lib/winston-azure').WinstonAzure;
 
-winston.add(Skywriter,{
+winston.add(winstonAzure,{
     account: testCredentials.account,
         key: testCredentials.key,
-      table: table.name,
+      table: testCredentials.table,
       level: 'warn',
   partition: require('os').hostname() + ':' + process.pid
-}); 
+});
+
 winston.remove(winston.transports.Console);
 
-describe('winston-skywriter:', function() {
+describe('winston-azure:', function() {
 
   before(function() {
   });

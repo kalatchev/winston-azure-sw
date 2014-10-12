@@ -1,0 +1,52 @@
+{
+  "name": "winston-azure",
+  "description": "A Windows Azure table storage transport for winston, updated with new Azure SDK",
+  "version": "0.0.1",
+  "author": {
+    "name": "Thomas Decaux",
+    "email": "ebuildy@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ebuildy/winston-azure.git"
+  },
+  "keywords": [
+    "logging",
+    "sysadmin",
+    "tools",
+    "winston",
+    "azure"
+  ],
+  "dependencies": {
+    "azure-storage": ">= 0.3.3"
+  },
+  "devDependencies": {
+    "winston": "0.5.x",
+    "mocha": "1.0.x",
+    "should": "0.6.x"
+  },
+  "main": "./lib/winston-azure",
+  "scripts": {
+    "test": "mocha test/test.js"
+  },
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+  "_npmUser": {
+    "name": "ebuildy",
+    "email": "ebuildy@gmail.com"
+  },
+  "_id": "winston-azure@0.0.1",
+  "optionalDependencies": {},
+  "_engineSupported": true,
+  "_npmVersion": "1.1.21",
+  "_nodeVersion": "v0.6.18",
+  "_defaultsLoaded": true,
+  "maintainers": [
+    {
+      "name": "ebuildy",
+      "email": "ebuildy@gmail.com"
+    }
+  ],
+  "directories": {},
+}

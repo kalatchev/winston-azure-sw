@@ -16,14 +16,20 @@ Yet another [Windows Azure][0] table storage transport for [winston][1], utilizi
 ## Usage
 ``` js
   var winston = require('winston');
+  require('winston-azure');
   
-  //
-  // Requiring `winston-azure` will expose 
-  // `winston.transports.Azure`
-  //
-  require('winston-azure').Azure;
-  
-  winston.add(winston.transports.Azure, options);
+  var logger = new (winston.Logger)({
+    transports: [
+        new (winston.transports.Azure)({
+            account: "Azure storage account sub domain ([A-Za-z0-9])",
+            key: "The long Azure storage secret key",
+            table: "The name of the table (why not just 'log'?)",
+            partition: require('os').hostname(),
+            level: 'warn',
+            metaAsColumns: true
+        })
+    ]
+});
 ```
 
 The Azure transport accepts the following options:

@@ -7,7 +7,7 @@
 var should = require('should');
 
 var fs = require('fs');
-var testCredentials = JSON.parse(fs.readFileSync('./test/credentials.json','utf8'));
+var testCredentials = JSON.parse(fs.readFileSync('./test/credentials.json', 'utf8'));
 var tableService = require('azure-storage').createTableService(testCredentials.account, testCredentials.key);
 
 var winston = require('winston');
@@ -20,45 +20,51 @@ var logger = new (winston.Logger)({
             account: testCredentials.account,
             key: testCredentials.key,
             table: testCredentials.table,
-            partition: require('os').hostname() + ':' + process.pid,
-            level: 'warn'
+            partition: require('os').hostname(),
+            level: 'warn',
+            metaAsColumns: true
         })
     ]
 });
 
-describe('winston-azure:', function() {
 
-  before(function() {
-  });
+describe('winston-azure:', function () {
 
-  describe('a logger', function() {
+    before(function (done) {
+        logger.transports.azure.createTableIfNotExists(function (err) {
+            return done(err);
+        });
+    });
 
-      it('should create Azure storage table', function (done) {
-          logger.transports.azure.createTableIfNotExists(function (error) {
-              should.not.exist(error);
+    after(function(done) {
+        logger.transports.azure.explore(1, function (result) {
+            var entity = result.entries[0];
 
-              it('should log to Azure', function (done) {
+            return done(entity === null ? 'Entity not found in table!' : null);
+        });
+    });
 
-                  logger.warn('Warning, you are logging to Azure',
-                      {uno: 1, dos: 'two', tres: true},
-                      function (err, level, msg, meta) {
-                          should.not.exist(err);
-                          level.should.equal('warn');
-                          msg.should.equal('Warning, you are logging to Azure');
+    describe('a logger', function () {
 
+        it('should log to Azure', function (done) {
 
-                          tableService.queryEntities(testCredentials.table, null, null, function (error, result) {
-                              console.log(error, result);
-
-                              setTimeout(function () {
-                                  done();
-                              }, 75);
-                          });
+            logger.warn('Warning, you are logging to Azure',
+                {uno: 1, dos: 'two', tres: true},
+                function (err, level, msg, meta) {
+                    should.not.exist(err);
+                    level.should.equal('warn');
+                    msg.should.equal('Warning, you are logging to Azure');
 
 
-                      });
-              });
-          });
-      });
-  });
+                    tableService.queryEntities(testCredentials.table, null, null, function (error, result) {
+
+                        setTimeout(function () {
+                            done();
+                        }, 75);
+                    });
+
+
+                });
+        });
+    });
 });

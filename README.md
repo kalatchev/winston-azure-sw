@@ -29,7 +29,9 @@ Yet another [Windows Azure][0] table storage transport for [winston][1], utilizi
             metaAsColumns: true
         })
     ]
-});
+  });
+  
+  logger.warn('Hello toto!');
 ```
 
 The Azure transport accepts the following options:
@@ -38,14 +40,14 @@ The Azure transport accepts the following options:
 * __account:__ The name of the Windows Azure storage account to use
 * __key:__ The access key used to authenticate into this storage account
 * __table:__ The name of the table to log to (defaults to 'log').  Must already exist.
-* __partition:__ The value to use for the PartitionKey in each row (defaults to 'log').  The RowKey is an auto-generated GUID.
-* __columns:__ If `true`, the transport will store the metadata key/value pairs in individual columns (this can be helpful when querying table storage for log entries with specific metadata values).  The default is to store the entire `meta` value as a single JSON string in a 'meta' column.
-
-### Helpful hint
-
-When running multiple node instances across multiple hosts, a good value for 'partition' is:  
+* __partition:__ The value to use for the PartitionKey in each row (defaults to 'log').
+* __metaAsColumns:__ If `true`, the transport will store the metadata key/value pairs in individual columns (this can be helpful when querying table storage for log entries with specific metadata values).  The default is to store the entire `meta` value as a single JSON string in a 'meta' column.
+* __rowKeyBuilder:__ A function to build the primary key, default is:
 ``` js
-partition: require('os').hostname() + ':' + process.pid
+    function()
+    {
+        return (new Date()).getTime() + '_' + (new Date()).getMilliseconds();
+    }
 ```
 
 [0]: http://www.windowsazure.com/en-us/develop/nodejs/

@@ -1,6 +1,6 @@
 /*!
  * winston-azure
- * Copyright(c) 2014 Thomas Decaux <ebuildy@gmail.com>
+ * Copyright(c) 2017 Thomas Decaux, Mikhail Kalatchev
  * Apache 2.0 Licensed
  */
 

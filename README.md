@@ -1,4 +1,4 @@
-# winston-azure
+# winston-azure-sw
 
 [![npm version](https://badge.fury.io/js/winston-azure-sw.svg)](https://badge.fury.io/js/winston-azure-sw)
 

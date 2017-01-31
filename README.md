@@ -8,7 +8,7 @@ Table storage transport for [winston][1] with latest (January 2017) [Microsoft a
 
 ``` bash
   $ npm install winston
-  $ npm install winston-azure
+  $ npm install winston-azure-sw
 ```
 
 ## Usage

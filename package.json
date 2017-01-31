@@ -1,10 +1,10 @@
 {
   "name": "winston-azure-sw",
   "description": "A Windows Azure table storage transport for winston, updated with Azure SDK",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Mikhail Kalatchev",
-    "email": "fake@somwhere.com"
+    "email": "skyware@abv.bg"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "name": "none",
     "email": "none@gmail.com"
   },
-  "_id": "winston-azure-sw@0.0.1",
+  "_id": "winston-azure-sw@1.0.1",
   "optionalDependencies": {},
   "_engineSupported": true,
   "_npmVersion": "1.1.21",
@@ -45,7 +45,7 @@
   "maintainers": [
     {
       "name": "Mikhail Kalatchev",
-      "email": "fake@somwhere.com"
+      "email": "skyware@abv.bg"
     }
   ],
   "directories": {}

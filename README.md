@@ -70,7 +70,11 @@ The Azure transport accepts the following options:
 ``` js
     function()
     {
-        return (new Date()).getTime() + '_' + (new Date()).getMilliseconds();
+        var rtext = '';
+        var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        for (var i = 0; i < 5; i++)
+            rtext += possible.charAt(Math.floor(Math.random() * possible.length));
+        return (new Date()).getTime() + '_' + (new Date()).getMilliseconds() + '_' + rtext;
     }
 ```
 

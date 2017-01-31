@@ -1,6 +1,6 @@
 # winston-azure
 
-[![NPM version](https://badge.fury.io/js/winston-azure@2x.png)](http://badge.fury.io/js/winston-azure)
+[![NPM version](https://badge.fury.io/js/winston-azure@2x.png)](http://badge.fury.io/js/winston-azure-sw)
 
 Yet another [Windows Azure][0] table storage transport for [winston][1], utilizing the latest (octobre 2014) [Microsoft azure][2] SDK.
 
